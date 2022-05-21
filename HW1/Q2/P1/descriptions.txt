@@ -1,0 +1,8 @@
+As can be seen in the screenshot, the topology is detected successfully.
+In addition, the flows of the root switch is stored in the file "root-switch-flows" using linux script command (please use cat to view it).
+
+The root flow contains following 4 flows:
+  -The first flow which has a priority of 100 is for sending any packet with an ethertype of 0x88cc (Link Layer Discovery Protocol) to the CONTROLLER.
+  -The second and third flow simply send any flow that enters the switch from port 1 ro port 2 and vice versa.
+  -The fourth flow drops every packet which is not matched with the three previous flows.
+ 

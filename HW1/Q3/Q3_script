@@ -1,0 +1,84 @@
+Script started on 2022-05-20 09:10:35-0700
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ sudo py5tho[K[K[K[Kthon autorun_net.py 
+[sudo] password for amirmehdijf: 
+Please enter the shape of your matrix (n): 4
+Please enter the matrix in the given format:
+--Enter each row weights with space (eg. 1,2,2,4,2) and then press enter to enter the next row
+--The number of rows would automatically be taken equal to the number of the columns!
+A = 
+0,2,3,4
+3,0   2,0,0,1
+3,0,0,0
+1,1,0,0
+mininet> pinga[K[K[K[K[K# the host [K [Ks cant [K[K't ping at first [K
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> X 
+h2 -> X 
+*** Results: 100% dropped (0/2 received)
+mininet> # now we would [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# now lets check the spf[K[Khorter[Kst path [Ks which is saved in [K[K[K[K[K[K[K[K[Kcreated by [K[K[Knby[K[K[Kby aur[Ktorun_net.py by importing spf.py
+mininet> sh cat ./data/spf_1_n.json
+[1, 2, 4]mininet> sh [K[K[K
+mininet> sh cat ./data/spf_n_1.json
+[4, 1]mininet> as [K[K[K
+mininet> # As can be seen the flows [K[K[K[K[K[Kpaths are as expected
+mininet> 
+mininet> # Now lets create the flow [Ks 
+mininet> sh python create_flows.py
+mininet> # The flows are created an [Kd saved in file [K[K[K[K[Kdiret[Kctory flows-s[Kjson [K, each switch having its own subdirectory s#-flows
+mininet> # Now lets push [K[K[K[K[Ksend_flows [K [K[K[K[K[K[K[K flows to the controller
+mininet> sh python3 send_flows.py
+mininet> # Finally we will pinga [K[K the host [Ks and se[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KT[Know the hosts can successfully ping each other
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+mininet> it [K[K[K# lets dump each switche[Ks [K[K flows [1@'[1@s
+mininet> o[Ksh ovs-ofctl -O OpenFlow13 dump-flows s1
+ cookie=0x0, duration=66.798s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth4",arp_tpa=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=66.791s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth4",nw_dst=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=66.786s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth1",nw_dst=10.0.2.1 actions=output:"s1-eth2"
+ cookie=0x0, duration=66.781s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth1",arp_tpa=10.0.2.1 actions=output:"s1-eth2"
+mininet> # t[Kthis shows that if the [K[K[K[K[K[K[K[K[K[K[K[Kthat if the in-port is 4 [K[K1 then [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksh ovs-ofctl -O OpenFlw[Kow13 dump-flows s1[K2
+ cookie=0x0, duration=115.717s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s2-eth1",nw_dst=10.0.2.1 actions=output:"s2-eth4"
+ cookie=0x0, duration=115.711s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s2-eth1",arp_tpa=10.0.2.1 actions=output:"s2-eth4"
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s2[K3
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s3[K4
+ cookie=0x0, duration=120.265s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth4",arp_tpa=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=120.258s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth4",nw_dst=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=120.252s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth2",nw_dst=10.0.2.1 actions=output:"s4-eth4"
+ cookie=0x0, duration=120.247s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth2",arp_tpa=10.0.2.1 actions=output:"s4-eth4"
+mininet> # The f[K[K[K[K[KIf we think [K[K[K[K[K[K[K[K[K[K[K[KThe flows are just as we exc[Kpected them to be [K
+mininet> exit[K[K[K[K# This [K[K[K[Keh[K[Khe above results [K[K[K[K[K[K[K[K[K[K[K[K[K[Kresults above shows[K that everything is wor[K[K[Kworking [K[K[K[K[K[K[K[Kworking well
+mininet> exit
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ # I [K have ac[K[Kalso re[K[Kwritten an extra[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksudo mn -c [K
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ # I hae[Kve also [K written an extra script tht [K[Kat deleted[Ks the [K[K[Khe cra[Keated dires[Kctory [K[Kies and folder [K[K[K[K[K[K[K[K[K[K[K[K, [K[K and flow [Ks that are e[Ksent rto [K[K[K[Kto the controoler[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K [Kt are in the controller [K
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ 3[K# Howee[Kver, we[K[Kthis [K[K[K[K[K[K[K[K[K[K[K[K[K[KTjis [K[K[K[Khis fl[K[Kscript is reset.py [K''reset.py'[C[C[C[C[C[C[C[C[C, [K[K. However, i [K[K/i [K[K[KI will not run it w[Kright now because we want to have the files stored [K[K[K[K[K[K[K[K[K[K[K[K[Kf[Kdirec[K[K[K[K[Kcreated files [K
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ exit [K[K[K[K[K# I oh[K[Khope you enjoyd[Ked it :)! :)[C[C[C[C
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q3[00m$ exit
+exit
+
+Script done on 2022-05-20 09:21:13-0700

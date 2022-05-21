@@ -1,0 +1,20 @@
+Script started on 2022-05-20 23:08:53-0700
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q4[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q4[00m$ sudo python3 watcher.py 
+[sudo] password for amirmehdijf: 
+The network links are changed!
+Updating the flows...
+New shortest path from 1 to n: [1, 4]
+New shortest path from n to n: [4, 1]
+The flows are successfully updated!
+
+The network links are changed!
+Updating the flows...
+New shortest path from 1 to n: [1, 2, 4]
+New shortest path from n to n: [4, 1]
+The flows are successfully updated!
+
+Watcher is shut down.
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q4[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q4[00m$ exit
+exit
+
+Script done on 2022-05-20 23:24:21-0700

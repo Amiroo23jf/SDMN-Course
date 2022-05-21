@@ -1,0 +1,31 @@
+Script started on 2022-05-12 14:23:57-0700
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q1/P2[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q1/P2[00m$ sud [Ko mn -r [K[K\[K[K[K[K[Kpython create_net.py 
+[sudo] password for amirmehdijf: 
+mininet> sh ./push_flows.sh
+mininet> h1 ping [K[K[K[K[K[K[K[Kping [K[K[K[K[Kping [K[Kgall
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+mininet> h1 pin[K[K[K[K[K[K# as can be seen, are packets are re[K[Ksuccessfully received
+mininet> # now we would ping individuall [Kt [K[K[Kly to show rhe[K[K[Kthe decreament[K[K[K[K[K[Kement of TTL as well[1P[1P[1P[1P[1P[1P[1P[1P[1@w[1@i[1P[1@e[C[1@ [1@w[1@i[1@l[1@l[1P[1@l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+mininet> h1 ping -c1 h2
+PING 10.0.2.1 (10.0.2.1) 56(84) bytes of data.
+64 bytes from 10.0.2.1: icmp_seq=1 ttl=63 time=0.953 ms
+
+--- 10.0.2.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.953/0.953/0.953/0.000 ms
+mininet> h2 ping -c1 h2[K1
+PING 10.0.1.1 (10.0.1.1) 56(84) bytes of data.
+64 bytes from 10.0.1.1: icmp_seq=1 ttl=63 time=0.099 ms
+
+--- 10.0.1.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.099/0.099/0.099/0.000 ms
+mininet> # The ttl is 63 instead of 64 which means tht [K[Kat the [Kere[K[K[Kre was a [K[K[K[K[K[Kttl [K[K[K[K[K TTL decrement was successfully done as [K [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kfunctions [K[K[K[K[K[K[K[K[K[Kwas successfully done[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C by the router
+mininet> exit
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q1/P2[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q1/P2[00m$ exit
+exit
+
+Script done on 2022-05-12 14:28:36-0700

@@ -1,0 +1,33 @@
+Script started on 2022-05-14 04:43:23-0700
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q1/P3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q1/P3[00m$ sudo python create_net.py 
+[sudo] password for amirmehdijf: 
+mininet> ./[K[Ksh ./s[Kpush_flows.sh
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 h3 
+h2 -> h1 h3 
+h3 -> h1 h2 
+*** Results: 0% dropped (6/6 received)
+mininet> h1 ping h2[K[K-c 1 [K[K[K[K[K[K[K[K[K[K[K[K[K# we fis [K[K[K[Kfirt[Kst ping h1 wi[K[K[K[K[K[K[K[K[K[Kpingh [K[K h1 [K[K2 with[K[K[K[Kfrom h1 and rh[K[Kcapture the request and replay for [K[K[K[K[K[K[Ky o[Kf[Kwhich contains labels [K[K[K[K[K[K[K[K
+mininet> # labels 12 and 21 [K, then wew [K[K[Ke will pinfg [K[K[Kg h2 fro h3 and ac[K[Kcapture the re[K[K[K same[K[K[K[K[K rep[Kqa[K[K[K[K[K[K[Khe [K[K[K[K[K[K[K[K[K[K[K[Kon[K[Kinspect the repl[K[Kquest and reply wh ich[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[Ky
+mininet> # which contains labels [C[C[C[C[C[C[C[C[C[C[Clabels 12 and 21, then we will ping h2 fro h3 and inspect the request and reply[C[C[C[C[C[C[C[C[C[C[Cwhich contains labels [K[C[C[C[C[C[C[C[C[C[C[Clabels 12 and 21, then we will ping h2 fro h3 and inspect the request and reply[C[C[C[C[C[C[C[C[C[C[Cwhich contains labels [K32 and 23 [K
+mininet> h1 ping h2[K[K-c1 h2
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.270 ms
+
+--- 10.0.0.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.270/0.270/0.270/0.000 ms
+mininet> h3 ping h1[K2[K[K[K -c1 h2
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.230 ms
+
+--- 10.0.0.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.230/0.230/0.230/0.000 ms
+mininet> exit
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q1/P3[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q1/P3[00m$ exit
+exit
+
+Script done on 2022-05-14 04:50:39-0700

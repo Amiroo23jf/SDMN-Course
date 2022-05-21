@@ -1,0 +1,107 @@
+Script started on 2022-05-20 23:08:41-0700
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q4[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q4[00m$ sudo python autorun_net.py 
+[sudo] password for amirmehdijf: 
+Please enter the shape of your matrix (n): 4
+Please enter the matrix in the given format:
+--Enter each row weights with space (eg. 1,2,2,4,2) and then press enter to enter the next row
+--The number of rows would automatically be taken equal to the number of the columns!
+A = 
+0,2,3,4
+2,0,01 ,1
+3,0,0,1 0
+1,1,00 ,0
+mininet> # [K[K# test[K[K[K[Kt[K[K[K# adding [K[K[K[K[K[K[Kcreate[King t[Kad [K[Knd sending the flows [K when [K watcher is not runnnig[K[K[King
+mininet> sh cre[K[K[Kpython cre[Keate_flows.py
+mininet> sh python3 push [K_f[K[K[K[K[K[Ksend_flows.py
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+mininet> # we [K[K[K[K[Kn[K# now lets make [K[K[K[K[Ksend [K[K[K[K[Klinks[K[K[K[K[Kset the link between s1 and s2 to down
+mininet> link s1 s2 down
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> X 
+h2 -> X 
+*** Results: 100% dropped (0/2 received)
+mininet> # As can be seen the hosts can't ping each other anymore
+mininet> # now [K[K[K[KNow lets set [K[K[K[K[K[K[K[K[K[K[K[Kow lets do the same thing while watcher is up ad [K[Knd running 
+mininet> the [K[K[K[K# [K [K[K# the [K[K[K[K[K The watcher script started runnig t[Kand as can be seen it find s[K[Ks the new poa[K[K[Kpath
+mininet> # lets check it [K[K[Kthe [K[K[K[Kif the host [Ks can ping eachother or [K[K[K[K[K[K[K[K[K other or not
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+mininet> # As can be seen the flows can easily ping each other [K
+mininet> # Now lets take a look a [Kt the flows in the [K[K[K[K[K[K[K[K[K[K[K[K[Knew flows se[K[Kinserted by the [K[K[K[Kwatchertwatcherhwatcherewatcher watcher
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flow [Ks s1
+ cookie=0x0, duration=131.315s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth4",arp_tpa=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=131.309s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth4",nw_dst=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=131.304s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth1",nw_dst=10.0.2.1 actions=output:"s1-eth4"
+ cookie=0x0, duration=131.298s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth1",arp_tpa=10.0.2.1 actions=output:"s1-eth4"
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s1[K2
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s2[K3
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s3[K4
+ cookie=0x0, duration=138.979s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth4",arp_tpa=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=138.973s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth4",nw_dst=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=138.967s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth1",nw_dst=10.0.2.1 actions=output:"s4-eth4"
+ cookie=0x0, duration=138.960s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth1",arp_tpa=10.0.2.1 actions=output:"s4-eth4"
+mininet> # As can be seen h[Kthe flows are changes [K[Kd 
+mininet> # Ag[K[KLet [K[K[K[KLets up[K[Kset the stae[Kte of the lin[K[Kink form [K[K[K[Krom s1 to s2 [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K s[Kbetween s1 and s2 up and see how the watcher behaves
+mininet> link s1 s2 up
+mininet> # As can be seen in the watcher log, the new chane[Kge in the topology is successfully [K[K[K[K[K[K[K[K[K[K[K[K[Kfond [K[K[Kund and the flows are wo[K[K[K[K[K[K[K[Ks [K[K[K[K[K[K[K[K[K[K[K everything [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kfound and the s[Kflows should be updated
+mininet> # lets test if the swi[K[K[Khost [Ks ac[K[Kcan pig [K[Kng each other ]\[K[K[K
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+mininet> # Again, te [K[Khe hosts ping eachother [K[K[K[K[K[K other successfully with [K[K[K[K[K[K, it also worths mentioning that [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+mininet> # let[K[K[KThe new fo[Klows are as c[K[K[K[Kshou[Kwn blo[K[Kelow
+mininet> # The new flows are shown below[C[C[C[C[C[C[C[C[C[C[CAgain, the hosts ping each other successfully[C[C[C[C[C[C[C[C[Cpingall[K# lets test if the hosts can ping each other[C[C[C[C[C[C[C[C[C[C[CAs can be seen in the watcher log, the new change in the topology is found and the flows should be updated[C[C[C[C[C[C[C[C[Clink s1 s2 up[K[C[C[C[C[C[C[C[C[C# Lets set the state of the link between s1 and s2 up and see how the watcher behaves[C[C[C[C[C[C[C[C[C[C[C[46PAs can be seen the flows are changed [C[C[C[C[C[C[C[C[Csh ovs-ofctl -O OpenFlow13 dump-flows s4321
+ cookie=0x0, duration=138.790s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth4",arp_tpa=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=138.784s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth4",nw_dst=10.0.1.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=138.779s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s1-eth1",nw_dst=10.0.2.1 actions=output:"s1-eth2"
+ cookie=0x0, duration=138.772s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s1-eth1",arp_tpa=10.0.2.1 actions=output:"s1-eth2"
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s1[C[C[C[C[C[C[C[C[C[9P# The new flows are shown below[C[C[C[C[C[C[C[C[C[C[CAgain, the hosts ping each other successfully[C[C[C[C[C[C[C[C[Cpingall[K# lets test if the hosts can ping each other[C[C[C[C[C[C[C[C[Cpingall[K# Again, the hosts ping each other successfully[C[C[C[C[C[C[C[C[C[C[C[16PThe new flows are shown below[C[C[C[C[C[C[C[C[Csh ovs-ofctl -O OpenFlow13 dump-flows s1[C[C[C[C[C[C[C[C[C[Ksh ovs-ofctl -O OpenFlow13 dump-flows s1[K2
+ cookie=0x0, duration=143.961s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s2-eth1",nw_dst=10.0.2.1 actions=output:"s2-eth4"
+ cookie=0x0, duration=143.955s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s2-eth1",arp_tpa=10.0.2.1 actions=output:"s2-eth4"
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s2[K3
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s3[K4
+ cookie=0x0, duration=147.054s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth4",arp_tpa=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=147.049s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth4",nw_dst=10.0.1.1 actions=output:"s4-eth1"
+ cookie=0x0, duration=147.035s, table=0, n_packets=2, n_bytes=196, priority=10,ip,in_port="s4-eth2",nw_dst=10.0.2.1 actions=output:"s4-eth4"
+ cookie=0x0, duration=147.027s, table=0, n_packets=2, n_bytes=84, priority=10,arp,in_port="s4-eth2",arp_tpa=10.0.2.1 actions=output:"s4-eth4"
+mininet> # As can be seen the nw[Kew flows are successfully changes [K[Kd and the network is up n[Kand running [K[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[1@ 
+mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s4[C[C[C[C[C[C[C[C[C[K# As can be seen the new flows are ch[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K#[K#[K#[K# [K[K# lets [K[K[K[K[K[K lets [K[K[K[K[Klets[K[K[K[K[K[K# t[KThe nw[Ketwork is [K[K[K[K should be [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KThis is the end of the simulation and from now [K, we wo[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KEnd of test[K[K[K[Kthe test
+mininet> exit
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q4[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q4[00m$ sudo mn -c
+[sudo] password for amirmehdijf: 
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+]0;amirmehdijf@ubuntu: ~/SDMN/HW1/Q4[01;32mamirmehdijf@ubuntu[00m:[01;34m~/SDMN/HW1/Q4[00m$ exit
+exit
+
+Script done on 2022-05-20 23:24:17-0700
